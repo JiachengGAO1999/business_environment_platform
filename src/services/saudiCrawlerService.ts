@@ -109,17 +109,32 @@ export async function runSaudiCrawlerOnce(): Promise<SaudiCrawlerRunResult> {
 }
 
 async function crawlUrl(url: string): Promise<{ title: string; text: string; publishedAt: string }> {
-  const controller = new AbortController()
-  const timeout = window.setTimeout(() => controller.abort(), 3500)
+  // 通过 Vite dev server 代理绕过 CORS
+  const proxyUrl = `/api/crawl?url=${encodeURIComponent(url)}`
+
   try {
-    const response = await fetch(url, { signal: controller.signal })
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`)
+    const proxyResp = await fetch(proxyUrl)
+    if (!proxyResp.ok) {
+      const errData = await proxyResp.json().catch(() => ({}))
+      throw new Error(`代理返回 ${proxyResp.status}: ${(errData as { error?: string }).error ?? '未知错误'}`)
     }
-    const html = await response.text()
-    return extractTextFromHtml(html)
-  } finally {
-    window.clearTimeout(timeout)
+    const data = (await proxyResp.json()) as { html: string; finalUrl?: string; status: number }
+    if (!data.html || data.html.length < 200) {
+      throw new Error('代理返回正文过短')
+    }
+    return extractTextFromHtml(data.html)
+  } catch (proxyError) {
+    // 代理失败时尝试直连（浏览器环境会受 CORS 限制）
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 5000)
+    try {
+      const response = await fetch(url, { signal: controller.signal })
+      if (!response.ok) throw new Error(`HTTP ${response.status}`)
+      const html = await response.text()
+      return extractTextFromHtml(html)
+    } finally {
+      window.clearTimeout(timeout)
+    }
   }
 }
 
