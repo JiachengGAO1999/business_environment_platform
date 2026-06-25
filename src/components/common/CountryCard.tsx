@@ -7,9 +7,9 @@ import { MapPin, TrendingUp } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const oppColors: Record<string, string> = {
-  high: 'bg-green-100 text-green-700 border-green-300',
-  medium: 'bg-yellow-100 text-yellow-700 border-yellow-300',
-  low: 'bg-secondary text-gray-600 border-gray-300',
+  high: 'bg-brand-50 text-brand-800 border-brand-200',
+  medium: 'bg-accent-amber-50 text-accent-amber-600 border-accent-amber-300',
+  low: 'bg-secondary text-muted-foreground border-border',
 }
 
 export default function CountryCard({ country }: { country: CountryProfile }) {
@@ -17,7 +17,7 @@ export default function CountryCard({ country }: { country: CountryProfile }) {
 
   return (
     <Card
-      className="cursor-pointer hover:shadow-md transition-shadow border-gray-200 hover:border-brand-300"
+      className="cursor-pointer border-border transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-[0_14px_34px_rgba(47,61,51,0.09)]"
       onClick={() => {
         if (country.reportId) {
           navigate(`/reports/${country.reportId}`)
@@ -27,8 +27,8 @@ export default function CountryCard({ country }: { country: CountryProfile }) {
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h3 className="font-semibold text-gray-900 text-base">{country.name}</h3>
-            <div className="flex items-center gap-1 text-xs text-gray-500 mt-0.5">
+            <h3 className="text-base font-medium text-foreground">{country.name}</h3>
+            <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
               <MapPin className="h-3 w-3" />
               {country.region}
             </div>
@@ -48,14 +48,14 @@ export default function CountryCard({ country }: { country: CountryProfile }) {
           {country.keyIndustries.map((ind) => (
             <span
               key={ind}
-              className="text-xs bg-secondary text-gray-600 px-2 py-0.5 rounded"
+              className="rounded border border-border/80 bg-secondary/70 px-2 py-0.5 text-xs text-muted-foreground"
             >
               {ind}
             </span>
           ))}
         </div>
 
-        <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
+        <p className="line-clamp-3 text-xs leading-6 text-muted-foreground">
           {country.latestSummary}
         </p>
       </CardContent>

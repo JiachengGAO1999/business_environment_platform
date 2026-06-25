@@ -3,13 +3,13 @@ import { DIMENSION_LABELS } from '@/types'
 import { Badge } from '@/components/ui/badge'
 
 const dimColors: Record<AnalysisDimension, string> = {
-  macro_economy: 'bg-blue-50 text-blue-700 border-blue-200',
-  industrial_policy: 'bg-purple-50 text-purple-700 border-purple-200',
-  trade_environment: 'bg-teal-50 text-teal-700 border-teal-200',
-  market_opportunity: 'bg-green-50 text-green-700 border-green-200',
-  business_risk: 'bg-orange-50 text-orange-700 border-orange-200',
-  political_geopolitical_risk: 'bg-red-50 text-red-700 border-red-200',
-  corporate_recommendation: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+  macro_economy: 'bg-brand-50 text-brand-800 border-brand-200',
+  industrial_policy: 'bg-[#f3ede2] text-[#765b32] border-[#dfd1ba]',
+  trade_environment: 'bg-[#eef3ef] text-[#4d664f] border-[#d5dfd3]',
+  market_opportunity: 'bg-[#edf5e9] text-[#4f6b3f] border-[#d2dfc8]',
+  business_risk: 'bg-accent-amber-50 text-accent-amber-600 border-accent-amber-300',
+  political_geopolitical_risk: 'bg-danger-50 text-danger-700 border-danger-100',
+  corporate_recommendation: 'bg-[#eef0f4] text-[#4f5967] border-[#d5dae2]',
 }
 
 export default function DimensionTag({ dimension }: { dimension: AnalysisDimension }) {

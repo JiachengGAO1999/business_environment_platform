@@ -6,37 +6,33 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   Kami-inspired theme tokens
-   Parchment · Ink-blue · Warm grays · Editorial rhythm
+   Warm intelligence theme tokens
+   Parchment · Sage · Charcoal · Editorial rhythm
    ============================================================ */
 
 @theme {
-  /* Kami brand: ink-blue replaces dark green */
-  --color-brand-950: #0d1a2b;
-  --color-brand-900: #12263d;
-  --color-brand-800: #1B365D;
-  --color-brand-700: #1f4069;
-  --color-brand-600: #2D5A8A;
-  --color-brand-500: #3a6fa0;
-  --color-brand-400: #5a8ab8;
-  --color-brand-300: #7da8cc;
-  --color-brand-200: #a3c4de;
-  --color-brand-100: #c9ddef;
-  --color-brand-50: #e7f1f8;
+  --color-brand-950: #1f2922;
+  --color-brand-900: #2f3d33;
+  --color-brand-800: #435745;
+  --color-brand-700: #59705b;
+  --color-brand-600: #6f8770;
+  --color-brand-500: #849b85;
+  --color-brand-400: #9caf9c;
+  --color-brand-300: #b9c7b7;
+  --color-brand-200: #d3ddd0;
+  --color-brand-100: #e7ede3;
+  --color-brand-50: #f4f7f1;
 
-  /* Kami warm parchment surface tokens */
-  --color-parchment: #f5f4ed;
-  --color-ivory: #faf9f5;
-  --color-warm-sand: #e8e6dc;
+  --color-parchment: #f7f5ee;
+  --color-ivory: #fdfbf5;
+  --color-warm-sand: #ebe7dc;
 
-  /* Kami text grays (warm, yellow-brown undertone) */
-  --color-kami-900: #141413;
-  --color-kami-700: #3d3d3a;
-  --color-kami-500: #6b6a64;
-  --color-kami-400: #8c8b84;
-  --color-kami-300: #b0afa8;
+  --color-kami-900: #171714;
+  --color-kami-700: #3f3d37;
+  --color-kami-500: #706d63;
+  --color-kami-400: #969185;
+  --color-kami-300: #bbb5aa;
 
-  /* Kami accent */
   --color-accent-amber-600: #b45309;
   --color-accent-amber-500: #d97706;
   --color-accent-amber-400: #f59e0b;
@@ -51,40 +47,40 @@
   --color-danger-50: #fef2f2;
 }
 
-/* shadcn/ui CSS variables — remapped to Kami tokens */
+/* shadcn/ui CSS variables — remapped to product tokens */
 :root {
   --radius: 0.375rem;
-  --background: #f5f4ed;
-  --foreground: #141413;
-  --card: #faf9f5;
-  --card-foreground: #141413;
-  --popover: #faf9f5;
-  --popover-foreground: #141413;
-  --primary: #1B365D;
-  --primary-foreground: #faf9f5;
-  --secondary: #e8e6dc;
-  --secondary-foreground: #3d3d3a;
-  --muted: #eeede6;
-  --muted-foreground: #6b6a64;
-  --accent: #e8e6dc;
-  --accent-foreground: #1B365D;
+  --background: #f7f5ee;
+  --foreground: #171714;
+  --card: #fdfbf5;
+  --card-foreground: #171714;
+  --popover: #fdfbf5;
+  --popover-foreground: #171714;
+  --primary: #435745;
+  --primary-foreground: #fdfbf5;
+  --secondary: #ebe7dc;
+  --secondary-foreground: #3f3d37;
+  --muted: #efebe1;
+  --muted-foreground: #706d63;
+  --accent: #e7ede3;
+  --accent-foreground: #2f3d33;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e5e3d8;
-  --input: #e5e3d8;
-  --ring: #1B365D;
-  --chart-1: #1B365D;
-  --chart-2: #2D5A8A;
-  --chart-3: #3a6fa0;
-  --chart-4: #5a8ab8;
-  --chart-5: #7da8cc;
-  --sidebar: #faf9f5;
-  --sidebar-foreground: #3d3d3a;
-  --sidebar-primary: #1B365D;
-  --sidebar-primary-foreground: #faf9f5;
-  --sidebar-accent: #e8e6dc;
-  --sidebar-accent-foreground: #3d3d3a;
-  --sidebar-border: #e5e3d8;
-  --sidebar-ring: #1B365D;
+  --border: #e4dfd2;
+  --input: #e4dfd2;
+  --ring: #59705b;
+  --chart-1: #435745;
+  --chart-2: #849b85;
+  --chart-3: #b45309;
+  --chart-4: #8a6d3b;
+  --chart-5: #9b4f43;
+  --sidebar: #fdfbf5;
+  --sidebar-foreground: #3f3d37;
+  --sidebar-primary: #435745;
+  --sidebar-primary-foreground: #fdfbf5;
+  --sidebar-accent: #e7ede3;
+  --sidebar-accent-foreground: #3f3d37;
+  --sidebar-border: #e4dfd2;
+  --sidebar-ring: #59705b;
 }
 
 /* Professional dashboard styles */
@@ -93,21 +89,22 @@ html {
 }
 
 body {
-  background-color: #f5f4ed;
-  color: #141413;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.72), transparent 26rem),
+    linear-gradient(180deg, #fbfaf5 0%, #f7f5ee 44%, #f2efe7 100%);
+  color: #171714;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings get serif touch via Geist's refined character */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 /* Kami-style horizontal rule */
 hr {
-  border-color: #e5e3d8;
+  border-color: #e4dfd2;
 }
 
 /* Custom scrollbar — warm toned */
@@ -117,31 +114,44 @@ hr {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5f4ed;
+  background: #f7f5ee;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #b0afa8;
+  background: #bbb5aa;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8c8b84;
+  background: #969185;
 }
 
-/* Kami depth: ring/whisper shadow, no hard drop shadows */
+/* Warm depth: ring/whisper shadow, no hard drop shadows */
 .kami-card {
-  box-shadow: 0 1px 3px rgba(27, 54, 93, 0.06);
-  border: 1px solid #e5e3d8;
+  box-shadow: 0 1px 3px rgba(47, 61, 51, 0.06);
+  border: 1px solid #e4dfd2;
 }
 
 .kami-card:hover {
-  box-shadow: 0 2px 8px rgba(27, 54, 93, 0.10);
+  box-shadow: 0 8px 24px rgba(47, 61, 51, 0.08);
 }
 
-/* Ink-blue left rail accent (used in evidence snippets, callouts) */
 .ink-rail {
-  border-left: 2px solid #1B365D;
+  border-left: 2px solid #435745;
+}
+
+.page-panel {
+  border: 1px solid #e4dfd2;
+  background: rgba(253, 251, 245, 0.82);
+  box-shadow: 0 10px 30px rgba(47, 61, 51, 0.06);
+}
+
+.section-eyebrow {
+  color: #706d63;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 @theme inline {
