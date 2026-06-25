@@ -1,4 +1,4 @@
-import type { ScreeningResult } from '@/types'
+import { DIMENSION_LABELS, type ScreeningResult } from '@/types'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -95,7 +95,7 @@ export default function ScreeningCard({ result, onAction }: ScreeningCardProps) 
             模型推断
           </Badge>
           <p className="text-xs text-gray-500">
-            基于上述事实和营商环境分析框架，系统推断该资料对{['宏观经济', '产业政策', '贸易环境', '市场机会', '经营风险', '政治与地缘风险', '企业行动建议'].filter((_, i) => result.mappedDimensions.length > i).join('、')}维度具有分析价值。
+            基于上述事实和营商环境六维模型，系统推断该资料对{result.mappedDimensions.map((dimension) => DIMENSION_LABELS[dimension]).join('、')}具有分析价值。
           </p>
         </div>
 

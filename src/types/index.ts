@@ -24,14 +24,7 @@ export type AnalysisDimension =
   | 'industrial_market_environment'
   | 'compliance_rule_of_law_environment'
   | 'innovation_technology_environment'
-  | 'social_cultural_environment'
-  | 'macro_economy'
-  | 'industrial_policy'
-  | 'trade_environment'
-  | 'market_opportunity'
-  | 'business_risk'
-  | 'political_geopolitical_risk'
-  | 'corporate_recommendation';
+  | 'social_cultural_environment';
 
 export type FactType =
   | 'macro'
@@ -62,13 +55,6 @@ export const DIMENSION_LABELS: Record<AnalysisDimension, string> = {
   compliance_rule_of_law_environment: '合规与法治环境',
   innovation_technology_environment: '新质生产力与科创环境',
   social_cultural_environment: '社会人文环境',
-  macro_economy: '宏观经济',
-  industrial_policy: '产业政策',
-  trade_environment: '贸易环境',
-  market_opportunity: '市场机会',
-  business_risk: '经营风险',
-  political_geopolitical_risk: '政治与地缘风险',
-  corporate_recommendation: '企业行动建议',
 };
 
 // --- 核心数据模型 ---

@@ -212,7 +212,7 @@ export default function ReportDetailPage() {
             {/* Risk summary alert */}
             {report.sections.some((s) => s.riskLevel === 'high' || s.riskLevel === 'critical') && (
               <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-3 text-xs text-red-800">
-                <strong>风险提示：</strong>本报告包含高风险或严重风险标记的章节，建议重点关注经营风险和政治与地缘风险部分。
+                <strong>风险提示：</strong>本报告包含高风险或严重风险标记的章节，建议重点关注合规与法治环境、政治举措及地缘环境部分。
               </div>
             )}
 

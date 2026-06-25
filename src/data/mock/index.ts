@@ -1,7 +1,8 @@
 import { mockCountries } from './countries'
 import { mockSources as baseMockSources } from './sources'
 import { mockEvidence as baseMockEvidence } from './evidence'
-import { mockReports as baseMockReports, mockReviewRecords } from './reports'
+import { mockReviewRecords } from './reports'
+import { sixDimensionMockReports } from './reportsSixDimension'
 import { saudiRealEvidence, saudiRealReport, saudiRealSources } from '@/data/real'
 import type {
   SourceDocument,
@@ -24,7 +25,7 @@ export const mockEvidence: EvidenceSnippet[] = [
 ]
 
 export const mockReports: AnalysisReport[] = [
-  ...baseMockReports.filter((report) => report.country !== '沙特阿拉伯'),
+  ...sixDimensionMockReports,
   saudiRealReport,
 ]
 
@@ -83,8 +84,6 @@ export function getHighRelevanceCount(): number {
 export function getHighRiskAlertCount(): number {
   return mockSources.filter(
     (s) =>
-      s.dimensions.includes('business_risk') ||
-      s.dimensions.includes('political_geopolitical_risk') ||
       s.dimensions.includes('political_geopolitical_environment') ||
       s.dimensions.includes('compliance_rule_of_law_environment')
   ).length

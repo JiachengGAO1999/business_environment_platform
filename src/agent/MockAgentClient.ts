@@ -109,33 +109,6 @@ function generateScreeningReason(doc: SourceDocument): string {
     social_cultural_environment: [
       '涉及劳动力市场、社会政策或人文环境，影响企业本地运营和长期发展',
     ],
-    macro_economy: [
-      '涉及目标国宏观经济指标变化，对营商环境有直接影响',
-      '反映目标国经济基本面变化，需纳入风险判断',
-    ],
-    industrial_policy: [
-      '涉及目标国产业政策调整，可能改变行业竞争格局和外资准入条件',
-      '政策变化直接影响外资企业的合规要求和经营成本',
-    ],
-    trade_environment: [
-      '涉及目标国贸易政策和关税调整，影响市场进入策略',
-      '贸易环境变化可能创造新的市场机会或增加进口成本',
-    ],
-    market_opportunity: [
-      '揭示了明确的投资或市场进入机会，值得进一步评估',
-      '目标市场出现结构性机会，与企业出海方向匹配',
-    ],
-    business_risk: [
-      '揭示了需要关注的经营风险因素，建议纳入风险评估矩阵',
-      '涉及税制、劳工或合规等核心经营要素的变化',
-    ],
-    political_geopolitical_risk: [
-      '涉及可能影响外资企业运营的政治或地缘因素',
-      '政策不确定性或地缘风险需要企业提前制定应对预案',
-    ],
-    corporate_recommendation: [
-      '包含对企业具有指导意义的行动建议或政策信息',
-    ],
   }
 
   const dimReasons = doc.dimensions

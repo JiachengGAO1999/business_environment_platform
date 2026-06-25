@@ -153,13 +153,6 @@ export default function SourcesPage() {
             <SelectItem value="compliance_rule_of_law_environment">合规法治环境</SelectItem>
             <SelectItem value="innovation_technology_environment">科创环境</SelectItem>
             <SelectItem value="social_cultural_environment">社会人文环境</SelectItem>
-            <SelectItem value="macro_economy">宏观经济</SelectItem>
-            <SelectItem value="industrial_policy">产业政策</SelectItem>
-            <SelectItem value="trade_environment">贸易环境</SelectItem>
-            <SelectItem value="market_opportunity">市场机会</SelectItem>
-            <SelectItem value="business_risk">经营风险</SelectItem>
-            <SelectItem value="political_geopolitical_risk">政治地缘</SelectItem>
-            <SelectItem value="corporate_recommendation">企业建议</SelectItem>
           </SelectContent>
         </Select>
 

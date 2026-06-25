@@ -159,7 +159,7 @@ function createSimulatedSource(url: string, country: string, quality: 'full' | '
         : '（模拟部分抓取结果）仅获取到部分内容，可能由于网页结构复杂或内容分页导致。建议手动导入完整文本以获得更好的分析结果。',
     relevanceScore: quality === 'full' ? 65 : 40,
     relevanceLevel: quality === 'full' ? 'medium' : 'low',
-    dimensions: quality === 'full' ? ['macro_economy'] : [],
+    dimensions: quality === 'full' ? ['industrial_market_environment'] : [],
     evidenceIds: [],
     dataOrigin: 'real',
     fetchStatus: quality === 'full' ? 'success' : 'partial_success',

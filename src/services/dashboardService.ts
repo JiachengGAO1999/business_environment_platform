@@ -33,9 +33,7 @@ export async function getTodayRisks(): Promise<RiskItem[]> {
   const riskSources = mockSources.filter(
     (s) =>
       s.relevanceLevel !== 'noise' &&
-      (s.dimensions.includes('business_risk') ||
-        s.dimensions.includes('political_geopolitical_risk') ||
-        s.dimensions.includes('political_geopolitical_environment') ||
+      (s.dimensions.includes('political_geopolitical_environment') ||
         s.dimensions.includes('compliance_rule_of_law_environment'))
   )
 
@@ -46,11 +44,9 @@ export async function getTodayRisks(): Promise<RiskItem[]> {
     country: s.country,
     dimension:
       s.dimensions.find((d) =>
-        d === 'business_risk' ||
-        d === 'political_geopolitical_risk' ||
         d === 'political_geopolitical_environment' ||
         d === 'compliance_rule_of_law_environment'
-      ) ?? 'business_risk',
+      ) ?? 'compliance_rule_of_law_environment',
     description: s.summary.slice(0, 100) + '...',
   }))
 }
@@ -61,9 +57,7 @@ export async function getTodayOpportunities(): Promise<OpportunityItem[]> {
   const oppSources = mockSources.filter(
     (s) =>
       s.relevanceLevel !== 'noise' &&
-      (s.dimensions.includes('market_opportunity') ||
-        s.dimensions.includes('corporate_recommendation') ||
-        s.dimensions.includes('financial_investment_environment') ||
+      (s.dimensions.includes('financial_investment_environment') ||
         s.dimensions.includes('industrial_market_environment') ||
         s.dimensions.includes('innovation_technology_environment') ||
         s.dimensions.includes('social_cultural_environment'))
@@ -75,13 +69,11 @@ export async function getTodayOpportunities(): Promise<OpportunityItem[]> {
     country: s.country,
     dimension:
       s.dimensions.find((d) =>
-        d === 'market_opportunity' ||
-        d === 'corporate_recommendation' ||
         d === 'financial_investment_environment' ||
         d === 'industrial_market_environment' ||
         d === 'innovation_technology_environment' ||
         d === 'social_cultural_environment'
-      ) ?? 'market_opportunity',
+      ) ?? 'industrial_market_environment',
     description: s.summary.slice(0, 100) + '...',
   }))
 }

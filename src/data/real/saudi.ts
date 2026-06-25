@@ -237,7 +237,7 @@ export const saudiRealReport: AnalysisReport = {
     '本版本仅接入 5 个官方入口样本，后续需扩展到 Excel 注册表中的 24 个来源并按日增量抓取。',
     'SDAIA、KACST、MISA 新闻列表等动态页面需后端 crawler 处理反爬、分页和 JavaScript 渲染问题。',
     '当前证据以官网公开入口和页面文本为主，下一版需接入具体公告、年度报告、PDF 和统计数据表。',
-    '六维模型与旧七维 mock 标签已兼容，但后续新国家应直接使用六维模型。',
+    '当前巴西、沙特和阿联酋均已统一到六维模型，后续国家应沿用同一来源注册表和报告结构。',
   ],
   reviewRecords: [],
   sections: [
