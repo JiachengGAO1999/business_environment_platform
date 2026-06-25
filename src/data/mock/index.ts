@@ -1,7 +1,8 @@
 import { mockCountries } from './countries'
-import { mockSources } from './sources'
-import { mockEvidence } from './evidence'
-import { mockReports, mockReviewRecords } from './reports'
+import { mockSources as baseMockSources } from './sources'
+import { mockEvidence as baseMockEvidence } from './evidence'
+import { mockReports as baseMockReports, mockReviewRecords } from './reports'
+import { saudiRealEvidence, saudiRealReport, saudiRealSources } from '@/data/real'
 import type {
   SourceDocument,
   EvidenceSnippet,
@@ -10,13 +11,22 @@ import type {
   ReviewRecord,
 } from '@/types'
 
-export {
-  mockCountries,
-  mockSources,
-  mockEvidence,
-  mockReports,
-  mockReviewRecords,
-}
+export { mockCountries, mockReviewRecords }
+
+export const mockSources: SourceDocument[] = [
+  ...baseMockSources.filter((source) => source.country !== '沙特阿拉伯'),
+  ...saudiRealSources,
+]
+
+export const mockEvidence: EvidenceSnippet[] = [
+  ...baseMockEvidence.filter((evidence) => !evidence.documentId.startsWith('src-sa-')),
+  ...saudiRealEvidence,
+]
+
+export const mockReports: AnalysisReport[] = [
+  ...baseMockReports.filter((report) => report.country !== '沙特阿拉伯'),
+  saudiRealReport,
+]
 
 // --- 辅助查询函数 ---
 
@@ -63,9 +73,7 @@ export function getReviewRecordsByReportId(reportId: string): ReviewRecord[] {
 // --- 统计函数 ---
 
 export function getTodaySourceCount(): number {
-  return mockSources.filter(
-    (s) => s.dataOrigin === 'mock' && s.relevanceLevel !== 'noise'
-  ).length
+  return mockSources.filter((s) => s.relevanceLevel !== 'noise').length
 }
 
 export function getHighRelevanceCount(): number {
@@ -74,7 +82,11 @@ export function getHighRelevanceCount(): number {
 
 export function getHighRiskAlertCount(): number {
   return mockSources.filter(
-    (s) => s.dimensions.includes('business_risk') || s.dimensions.includes('political_geopolitical_risk')
+    (s) =>
+      s.dimensions.includes('business_risk') ||
+      s.dimensions.includes('political_geopolitical_risk') ||
+      s.dimensions.includes('political_geopolitical_environment') ||
+      s.dimensions.includes('compliance_rule_of_law_environment')
   ).length
 }
 

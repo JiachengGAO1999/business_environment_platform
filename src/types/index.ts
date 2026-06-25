@@ -19,6 +19,12 @@ export type Reliability = 'high' | 'medium' | 'low';
 export type RelevanceLevel = 'high' | 'medium' | 'low' | 'noise';
 
 export type AnalysisDimension =
+  | 'political_geopolitical_environment'
+  | 'financial_investment_environment'
+  | 'industrial_market_environment'
+  | 'compliance_rule_of_law_environment'
+  | 'innovation_technology_environment'
+  | 'social_cultural_environment'
   | 'macro_economy'
   | 'industrial_policy'
   | 'trade_environment'
@@ -50,6 +56,12 @@ export type FetchStatus = 'success' | 'failed' | 'partial_success' | 'manual_imp
 // --- 维度标签映射 ---
 
 export const DIMENSION_LABELS: Record<AnalysisDimension, string> = {
+  political_geopolitical_environment: '政治举措及地缘环境',
+  financial_investment_environment: '金融投资环境',
+  industrial_market_environment: '产业政策及市场环境',
+  compliance_rule_of_law_environment: '合规与法治环境',
+  innovation_technology_environment: '新质生产力与科创环境',
+  social_cultural_environment: '社会人文环境',
   macro_economy: '宏观经济',
   industrial_policy: '产业政策',
   trade_environment: '贸易环境',

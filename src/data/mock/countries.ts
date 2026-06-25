@@ -21,8 +21,8 @@ export const mockCountries: CountryProfile[] = [
     opportunityLevel: 'high',
     keyIndustries: ['能源转型', '基建与房地产', '数字科技', '旅游娱乐', '金融服务'],
     latestSummary:
-      '沙特Vision 2030进入冲刺阶段，NEOM、红海旅游等巨型项目持续推进。外资政策持续开放，设立区域总部的外企可享政府采购和税收优惠。地缘政治风险和油价波动仍是主要不确定因素，但市场开放和基建投资带来明确机会窗口。',
-    reportStatus: 'draft',
+      '已接入沙特真实来源 v0.1：Invest Saudi、SAMA、ZATCA、CST、HRSD 等官方入口形成首批语料，覆盖投资、金融监管、税务海关、科创监管和劳动力市场。当前机会来自 Vision 2030 下的多行业开放与政府服务数字化，主要风险集中在税务海关、金融监管、技术许可和用工合规的持续跟踪成本。',
+    reportStatus: 'in_review',
     reportId: 'report-sa-2025-q2',
   },
   {

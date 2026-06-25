@@ -147,6 +147,12 @@ export default function SourcesPage() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">全部维度</SelectItem>
+            <SelectItem value="political_geopolitical_environment">政治地缘环境</SelectItem>
+            <SelectItem value="financial_investment_environment">金融投资环境</SelectItem>
+            <SelectItem value="industrial_market_environment">产业市场环境</SelectItem>
+            <SelectItem value="compliance_rule_of_law_environment">合规法治环境</SelectItem>
+            <SelectItem value="innovation_technology_environment">科创环境</SelectItem>
+            <SelectItem value="social_cultural_environment">社会人文环境</SelectItem>
             <SelectItem value="macro_economy">宏观经济</SelectItem>
             <SelectItem value="industrial_policy">产业政策</SelectItem>
             <SelectItem value="trade_environment">贸易环境</SelectItem>
