@@ -101,7 +101,7 @@ export default function SourcesPage() {
   return (
     <PageShell title="资料库" description="管理每日抓取和导入的全球营商环境相关资料">
       {/* 筛选栏 */}
-      <div className="flex flex-wrap items-center gap-3 mb-4 bg-white p-3 rounded-lg border">
+      <div className="flex flex-wrap items-center gap-3 mb-4 bg-card p-3 rounded-lg border">
         <Select value={filters.country ?? 'all'} onValueChange={(v) => updateFilter('country', v === 'all' ? undefined : v)}>
           <SelectTrigger className="w-[120px] h-8 text-xs">
             <SelectValue placeholder="国家" />
@@ -186,7 +186,7 @@ export default function SourcesPage() {
       ) : sources.length === 0 ? (
         <EmptyState message="没有匹配的资料，请调整筛选条件" />
       ) : (
-        <div className="bg-white rounded-lg border overflow-hidden">
+        <div className="bg-card rounded-lg border overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
@@ -204,7 +204,7 @@ export default function SourcesPage() {
               {sources.map((s) => (
                 <TableRow
                   key={s.id}
-                  className="cursor-pointer hover:bg-gray-50"
+                  className="cursor-pointer hover:bg-background"
                   onClick={() => openDetail(s.id)}
                 >
                   <TableCell className="text-xs font-medium text-gray-900 max-w-[300px] truncate">
@@ -313,7 +313,7 @@ export default function SourcesPage() {
 
                 <div>
                   <h4 className="text-sm font-medium text-gray-700 mb-2">摘要</h4>
-                  <p className="text-xs text-gray-600 leading-relaxed bg-gray-50 p-3 rounded">
+                  <p className="text-xs text-gray-600 leading-relaxed bg-background p-3 rounded">
                     {selectedSource.source.summary}
                   </p>
                 </div>

@@ -121,7 +121,7 @@ export default function ReviewPage() {
                   key={t}
                   onClick={() => setTabFilter(t as typeof tabFilter)}
                   className={`text-xs px-3 py-1 rounded-md transition-colors ${
-                    tabFilter === t ? 'bg-brand-700 text-white' : 'bg-white text-gray-600 hover:bg-gray-100 border'
+                    tabFilter === t ? 'bg-brand-700 text-white' : 'bg-card text-gray-600 hover:bg-secondary border'
                   }`}
                 >
                   {TAB_LABELS[t]}
@@ -178,7 +178,7 @@ export default function ReviewPage() {
             ) : (
               <div className="space-y-4">
                 {/* Report header */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-card rounded-lg border p-4">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="text-sm font-semibold text-gray-900">
                       {selectedReport.title}
@@ -201,7 +201,7 @@ export default function ReviewPage() {
                 </div>
 
                 {/* Section review */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-card rounded-lg border p-4">
                   <h4 className="text-xs font-semibold text-gray-700 mb-3">段落审核</h4>
                   <div className="space-y-3">
                     {selectedReport.sections.map((section) => {
@@ -263,7 +263,7 @@ export default function ReviewPage() {
                 </div>
 
                 {/* Overall review */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-card rounded-lg border p-4">
                   <h4 className="text-xs font-semibold text-gray-700 mb-3">整体审核结论</h4>
                   {getOverallReview() ? (
                     <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-xs">
@@ -299,7 +299,7 @@ export default function ReviewPage() {
 
                 {/* Review history */}
                 {reviews.length > 0 && (
-                  <div className="bg-white rounded-lg border p-4">
+                  <div className="bg-card rounded-lg border p-4">
                     <h4 className="text-xs font-semibold text-gray-700 mb-3 flex items-center gap-2">
                       <History className="h-3 w-3" />审核记录
                     </h4>

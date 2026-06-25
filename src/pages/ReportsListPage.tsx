@@ -53,7 +53,7 @@ export default function ReportsListPage() {
                 className={`text-xs px-3 py-1.5 rounded-md transition-colors ${
                   statusFilter === s
                     ? 'bg-brand-700 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-100 border'
+                    : 'bg-card text-gray-600 hover:bg-secondary border'
                 }`}
               >
                 {STATUS_TAB_LABELS[s] ?? s}

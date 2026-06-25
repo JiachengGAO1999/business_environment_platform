@@ -9,7 +9,7 @@ interface PageShellProps {
 
 export default function PageShell({ children, title, description }: PageShellProps) {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <TopNav />
       <main className="mx-auto max-w-[1440px] px-6 py-4">
         {(title || description) && (

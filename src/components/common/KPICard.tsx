@@ -9,7 +9,7 @@ interface KPICardProps {
 }
 
 const variantStyles = {
-  default: 'bg-white border-gray-200',
+  default: 'bg-card border-gray-200',
   warning: 'bg-amber-50 border-amber-300',
   danger: 'bg-red-50 border-red-300',
 }

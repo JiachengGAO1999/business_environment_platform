@@ -44,7 +44,7 @@ export default function ScreeningCard({ result, onAction }: ScreeningCardProps) 
               <Badge variant="outline" className={`text-xs ${
                 result.relevanceLevel === 'high' ? 'bg-green-50 text-green-700 border-green-300' :
                 result.relevanceLevel === 'medium' ? 'bg-amber-50 text-amber-700 border-amber-300' :
-                'bg-gray-50 text-gray-500'
+                'bg-background text-gray-500'
               }`}>
                 {result.relevanceLevel === 'high' ? '高相关' : result.relevanceLevel === 'medium' ? '中相关' : '低相关'}
               </Badge>

@@ -31,7 +31,7 @@ export default function EvidencePanel({ activeEvidenceId, sectionEvidenceIds }: 
     : null
 
   return (
-    <div className="sticky top-14 h-[calc(100vh-3.5rem)] bg-white border-l overflow-hidden">
+    <div className="sticky top-14 h-[calc(100vh-3.5rem)] bg-card border-l overflow-hidden">
       <div className="p-3 border-b">
         <h3 className="text-xs font-semibold text-gray-700">
           {activeEvidence ? '证据详情' : '证据来源'}

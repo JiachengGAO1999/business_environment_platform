@@ -150,7 +150,7 @@ export default function ReportDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <TopNav />
         <LoadingState message="加载报告中..." fullPage />
       </div>
@@ -159,7 +159,7 @@ export default function ReportDetailPage() {
 
   if (error || !report) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <TopNav />
         <div className="p-6">
           <ErrorState message={error ?? '报告不存在'} onRetry={fetchReport} />
@@ -176,11 +176,11 @@ export default function ReportDetailPage() {
   const currentSection = report.sections.find((s) => s.id === activeSectionId)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <TopNav />
 
       {/* Report Header */}
-      <div className="bg-white border-b px-6 py-3">
+      <div className="bg-card border-b px-6 py-3">
         <div className="flex items-center gap-2 mb-1">
           <Button variant="ghost" size="sm" onClick={() => navigate('/reports')} className="text-xs h-7 px-2">
             <ArrowLeft className="h-3 w-3 mr-1" />返回
@@ -207,7 +207,7 @@ export default function ReportDetailPage() {
         />
 
         {/* Center: Report Content */}
-        <div className="bg-white border-r overflow-y-auto" style={{ maxHeight: 'calc(100vh - 3.5rem - 72px)' }}>
+        <div className="bg-card border-r overflow-y-auto" style={{ maxHeight: 'calc(100vh - 3.5rem - 72px)' }}>
           <div className="p-6 max-w-[720px]">
             {/* Risk summary alert */}
             {report.sections.some((s) => s.riskLevel === 'high' || s.riskLevel === 'critical') && (
@@ -372,7 +372,7 @@ export default function ReportDetailPage() {
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">审核记录</h3>
                 <div className="space-y-2">
                   {report.reviewRecords.map((r) => (
-                    <div key={r.id} className="text-xs bg-gray-50 rounded-lg p-3">
+                    <div key={r.id} className="text-xs bg-background rounded-lg p-3">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-medium text-gray-900">{r.reviewer}</span>
                         <Badge variant="outline" className={`text-xs ${

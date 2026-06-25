@@ -111,7 +111,7 @@ export default function ScreeningPage() {
       ) : (
         <>
           {/* 筛选行 */}
-          <div className="flex items-center gap-3 mb-4 bg-white p-3 rounded-lg border">
+          <div className="flex items-center gap-3 mb-4 bg-card p-3 rounded-lg border">
             <Select value={countryFilter} onValueChange={(v) => setCountryFilter(v ?? 'all')}>
               <SelectTrigger className="w-[120px] h-8 text-xs">
                 <SelectValue placeholder="国家" />

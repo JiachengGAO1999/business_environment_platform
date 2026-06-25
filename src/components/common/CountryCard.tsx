@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const oppColors: Record<string, string> = {
   high: 'bg-green-100 text-green-700 border-green-300',
   medium: 'bg-yellow-100 text-yellow-700 border-yellow-300',
-  low: 'bg-gray-100 text-gray-600 border-gray-300',
+  low: 'bg-secondary text-gray-600 border-gray-300',
 }
 
 export default function CountryCard({ country }: { country: CountryProfile }) {
@@ -48,7 +48,7 @@ export default function CountryCard({ country }: { country: CountryProfile }) {
           {country.keyIndustries.map((ind) => (
             <span
               key={ind}
-              className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded"
+              className="text-xs bg-secondary text-gray-600 px-2 py-0.5 rounded"
             >
               {ind}
             </span>
