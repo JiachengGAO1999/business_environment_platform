@@ -9,11 +9,20 @@ import { getCountries, getDashboardOverview, getTodayOpportunities, getTodayRisk
 import type { CountryProfile, DashboardOverview, OpportunityItem, RiskItem } from '@/types'
 import type { LucideIcon } from 'lucide-react'
 import { ArrowUpRight, Database, FileCheck, Globe2, Radar, ScanSearch, ShieldAlert, Sparkles } from 'lucide-react'
+import RealWorldMap from '@/components/common/WorldMap'
+
+// Equirectangular projection: x% = 50 + lon * 100/360, y% = 50 - lat * (W/H) * 100/360
+function lonLatToPercent(lon: number, lat: number, w = 1000, h = 520): { x: number; y: number } {
+  return {
+    x: 50 + lon * (100 / 360),
+    y: 50 - lat * (w / h) * (100 / 360),
+  }
+}
 
 const MAP_POINTS: Record<string, { x: number; y: number; label: string }> = {
-  巴西: { x: 33, y: 63, label: 'Sao Paulo / Brasilia' },
-  沙特阿拉伯: { x: 60, y: 48, label: 'Riyadh' },
-  阿联酋: { x: 63, y: 50, label: 'Dubai / Abu Dhabi' },
+  巴西: { ...lonLatToPercent(-46.6, -23.5), label: 'Sao Paulo / Brasilia' },
+  沙特阿拉伯: { ...lonLatToPercent(46.7, 24.6), label: 'Riyadh' },
+  阿联酋: { ...lonLatToPercent(55.3, 25.2), label: 'Dubai / Abu Dhabi' },
 }
 
 const riskWeight = {
@@ -98,7 +107,7 @@ export default function WorldMapPage() {
           </div>
 
           <div className="relative min-h-[520px] px-4 py-6 md:px-8">
-            <WorldMapBackground />
+            <RealWorldMap width={1000} height={520} className="absolute inset-0 text-brand-800" />
 
             {countries.map((country) => {
               const point = MAP_POINTS[country.name]
@@ -226,36 +235,3 @@ function MetricStrip({ label, value, icon: Icon }: { label: string; value: strin
   )
 }
 
-function WorldMapBackground() {
-  return (
-    <svg
-      className="absolute inset-0 h-full w-full text-brand-900"
-      viewBox="0 0 1000 560"
-      role="img"
-      aria-label="世界地图背景"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <defs>
-        <pattern id="map-grid" width="44" height="44" patternUnits="userSpaceOnUse">
-          <path d="M 44 0 L 0 0 0 44" fill="none" stroke="currentColor" strokeOpacity="0.08" strokeWidth="1" />
-        </pattern>
-      </defs>
-      <rect width="1000" height="560" fill="url(#map-grid)" opacity="0.7" />
-      <g fill="currentColor" opacity="0.1">
-        <path d="M148 161l40-31 77 5 28 34-15 39-51 6-20 35-72-6-45-35 18-33z" />
-        <path d="M257 274l54 15 25 47-17 71-37 65-42-18-29-80 15-58z" />
-        <path d="M435 148l62-24 76 15 37 47-30 37-79 6-53-24z" />
-        <path d="M478 247l72 7 45 47 25 91-34 79-54-12-47-83-31-77z" />
-        <path d="M633 189l94-42 117 25 68 57-46 48-101-11-62 39-73-40z" />
-        <path d="M760 355l83 15 38 39-18 39-70 13-51-44z" />
-      </g>
-      <g fill="none" stroke="currentColor" strokeOpacity="0.22" strokeWidth="1.2">
-        <ellipse cx="500" cy="280" rx="420" ry="205" />
-        <path d="M80 280h840" />
-        <path d="M500 76v408" />
-        <path d="M220 108c110 58 448 58 560 0" />
-        <path d="M220 452c110-58 448-58 560 0" />
-      </g>
-    </svg>
-  )
-}
