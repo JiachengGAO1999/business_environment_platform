@@ -5,7 +5,7 @@ import {
   getHighRiskAlertCount,
   getGeneratedReportCount,
   getPendingReviewCount,
-  mockSources,
+  getEffectiveSources,
   mockCountries,
 } from '@/data/mock'
 
@@ -30,7 +30,7 @@ export async function getCountries(): Promise<CountryProfile[]> {
 export async function getTodayRisks(): Promise<RiskItem[]> {
   await new Promise((r) => setTimeout(r, 100))
 
-  const riskSources = mockSources.filter(
+  const riskSources = getEffectiveSources().filter(
     (s) =>
       s.relevanceLevel !== 'noise' &&
       (s.dimensions.includes('political_geopolitical_environment') ||
@@ -54,7 +54,7 @@ export async function getTodayRisks(): Promise<RiskItem[]> {
 export async function getTodayOpportunities(): Promise<OpportunityItem[]> {
   await new Promise((r) => setTimeout(r, 100))
 
-  const oppSources = mockSources.filter(
+  const oppSources = getEffectiveSources().filter(
     (s) =>
       s.relevanceLevel !== 'noise' &&
       (s.dimensions.includes('financial_investment_environment') ||

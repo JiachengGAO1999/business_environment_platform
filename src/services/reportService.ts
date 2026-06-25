@@ -1,12 +1,12 @@
 import type { AnalysisReport, EvidenceSnippet, ReportGenerationInput } from '@/types'
 import { createAgentClient } from '@/agent'
-import { mockReports, mockSources, getEvidenceByIds, getReportById } from '@/data/mock'
+import { getEffectiveReports, getEffectiveSources, getEvidenceByIds, getReportById } from '@/data/mock'
 
 const agentClient = createAgentClient()
 
 export async function getReports(): Promise<AnalysisReport[]> {
   await new Promise((r) => setTimeout(r, 100))
-  return mockReports
+  return getEffectiveReports()
 }
 
 export async function getReportByIdService(id: string): Promise<AnalysisReport | null> {
@@ -32,7 +32,7 @@ export async function getEvidenceForSection(sectionEvidenceIds: string[]): Promi
   const snippets = getEvidenceByIds(sectionEvidenceIds)
 
   return snippets.map((ev) => {
-    const source = mockSources.find((s) => s.id === ev.documentId)
+    const source = getEffectiveSources().find((s) => s.id === ev.documentId)
     return {
       evidence: ev,
       sourceTitle: source?.title ?? '未知来源',

@@ -1,11 +1,11 @@
 import type { ScreeningResult, EvidenceSnippet } from '@/types'
 import { createAgentClient } from '@/agent'
-import { mockSources, getEvidenceByDocumentId } from '@/data/mock'
+import { getEffectiveSources, getEvidenceByDocumentId } from '@/data/mock'
 
 const agentClient = createAgentClient()
 
 export async function getScreeningResults(): Promise<ScreeningResult[]> {
-  const relevantDocs = mockSources.filter((s) => s.relevanceLevel !== 'noise')
+  const relevantDocs = getEffectiveSources().filter((s) => s.relevanceLevel !== 'noise')
   return agentClient.screenDocuments(relevantDocs)
 }
 
@@ -55,7 +55,7 @@ export async function updateScreeningDecision(
   saveActions(actions)
 
   // 返回更新后的结果
-  const doc = mockSources.find((s) => s.id === documentId)
+  const doc = getEffectiveSources().find((s) => s.id === documentId)
   if (!doc) return null
 
   const evidence = getEvidenceByDocumentId(documentId)

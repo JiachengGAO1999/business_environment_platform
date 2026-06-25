@@ -1,5 +1,5 @@
 import type { AnalysisReport, ReviewRecord, ReviewAction } from '@/types'
-import { mockReports, getReviewRecordsByReportId, getReportById } from '@/data/mock'
+import { getEffectiveReports, getReviewRecordsByReportId, getReportById } from '@/data/mock'
 
 const STORAGE_KEY = 'biz-platform-review-state'
 
@@ -24,7 +24,7 @@ function saveState(reportId: string, state: ReviewState): void {
 
 export async function getPendingReviews(): Promise<AnalysisReport[]> {
   await new Promise((r) => setTimeout(r, 100))
-  return mockReports.filter(
+  return getEffectiveReports().filter(
     (r) => r.status === 'draft' || r.status === 'in_review'
   )
 }

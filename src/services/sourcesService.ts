@@ -1,10 +1,10 @@
 import type { SourceDocument, EvidenceSnippet, SourceFilters } from '@/types'
-import { mockSources, getEvidenceByDocumentId, getSourceById } from '@/data/mock'
+import { getEffectiveSources, getEvidenceByDocumentId, getSourceById } from '@/data/mock'
 
 export async function getSources(filters: SourceFilters = {}): Promise<SourceDocument[]> {
   await new Promise((r) => setTimeout(r, 150))
 
-  let result = [...mockSources]
+  let result = [...getEffectiveSources()]
 
   if (filters.country) {
     result = result.filter((s) => s.country === filters.country)

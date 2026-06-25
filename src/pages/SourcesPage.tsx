@@ -30,9 +30,10 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { getSources, getSourceByIdService } from '@/services/sourcesService'
+import { runSaudiCrawlerOnce, type SaudiCrawlerRunResult } from '@/services/saudiCrawlerService'
 import { useDebounce } from '@/hooks/useDebounce'
 import type { SourceDocument, SourceFilters, SourceType, RelevanceLevel, AnalysisDimension, EvidenceSnippet } from '@/types'
-import { ExternalLink, Search, X, Upload } from 'lucide-react'
+import { ExternalLink, Loader2, PlayCircle, Search, X, Upload } from 'lucide-react'
 import RealSourceImporter from '@/components/sources/RealSourceImporter'
 
 export default function SourcesPage() {
@@ -48,6 +49,8 @@ export default function SourcesPage() {
   } | null>(null)
   const [detailOpen, setDetailOpen] = useState(false)
   const [importOpen, setImportOpen] = useState(false)
+  const [crawlerRunning, setCrawlerRunning] = useState(false)
+  const [crawlerResult, setCrawlerResult] = useState<SaudiCrawlerRunResult | null>(null)
 
   const fetchSources = useCallback(async () => {
     setLoading(true)
@@ -81,6 +84,19 @@ export default function SourcesPage() {
   const clearFilters = () => {
     setFilters({})
     setSearchInput('')
+  }
+
+  const runSaudiCrawler = async () => {
+    setCrawlerRunning(true)
+    setCrawlerResult(null)
+    try {
+      const result = await runSaudiCrawlerOnce()
+      setCrawlerResult(result)
+      setFilters((prev) => ({ ...prev, country: '沙特阿拉伯', dataOrigin: 'real' }))
+      await fetchSources()
+    } finally {
+      setCrawlerRunning(false)
+    }
   }
 
   const openDetail = async (id: string) => {
@@ -172,10 +188,43 @@ export default function SourcesPage() {
           </Button>
         )}
 
-        <Button variant="outline" size="sm" onClick={() => setImportOpen(true)} className="h-8 text-xs ml-auto">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={runSaudiCrawler}
+          disabled={crawlerRunning}
+          className="h-8 text-xs ml-auto"
+        >
+          {crawlerRunning ? (
+            <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+          ) : (
+            <PlayCircle className="h-3 w-3 mr-1" />
+          )}
+          一键抓取沙特
+        </Button>
+
+        <Button variant="outline" size="sm" onClick={() => setImportOpen(true)} className="h-8 text-xs">
           <Upload className="h-3 w-3 mr-1" />导入真实来源
         </Button>
       </div>
+
+      {crawlerResult && (
+        <div className="mb-4 rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-xs text-brand-900">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span className="font-medium">沙特 crawler 已完成</span>
+            <span>来源 {crawlerResult.sources.length} 条</span>
+            <span>证据 {crawlerResult.evidence.length} 条</span>
+            <span>直接抓取 {crawlerResult.fetchedCount} 条</span>
+            <span>部分成功 {crawlerResult.fallbackCount} 条</span>
+            <span>报告已更新为：{crawlerResult.report.title}</span>
+          </div>
+          {crawlerResult.logs.length > 0 && (
+            <p className="mt-1 text-muted-foreground">
+              {crawlerResult.logs[crawlerResult.logs.length - 1]}
+            </p>
+          )}
+        </div>
+      )}
 
       {/* 资料表格 */}
       {loading ? (
